@@ -4,20 +4,50 @@ const hr = document.querySelector("#hr");
 const mn = document.querySelector("#mn");
 const sc = document.querySelector("#sc");
 
+let today = new Date();
+let userHour = today.getHours();
+
+let minDeg = 0;
+let hourDeg = userHour * 30;
+
+console.log(hourDeg);
+
 setInterval(() => {
   let day = new Date();
   let hh = day.getHours() * 30;
   let mm = day.getMinutes() * deg;
   let ss = day.getSeconds() * deg;
 
-  // const hour = 30 * hh + mm / 12;
-  // const minute = 6 * mm;
-  // const second = 6 * ss;
-  // console.log(hour);
+  // let getMin = 60 / 360;
+
+  //   console.log(getMin);
+
   hr.style.transform = `rotateZ(${hh + mm / 12}deg)`;
-  mn.style.transform = `rotateZ(${mm}deg)`;
+
   sc.style.transform = `rotateZ(${ss}deg)`;
-});
+}, 1000);
+
+setInterval(() => {
+  minDeg = minDeg + 6;
+
+  console.log(minDeg);
+
+  if (minDeg > 360) {
+    minDeg = 0;
+  }
+  mn.style.transform = `rotateZ(${minDeg}deg)`;
+}, 60000);
+
+setInterval(() => {
+  hourDeg = hourDeg + 1;
+
+  console.log(hourDeg);
+
+  if (hourDeg > 360) {
+    hourDeg = 0;
+  }
+  mn.style.transform = `rotateZ(${hourDeg}deg)`;
+}, 60000);
 // let outText = "Hello Welcome";
 // let regex = /Hello/;
 // let result = outText.match(regex);
